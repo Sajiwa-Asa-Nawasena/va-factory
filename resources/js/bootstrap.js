@@ -2,7 +2,7 @@ window._ = require('lodash');
 
 try {
     require('bootstrap');
-} catch (e) {}
+} catch (e) { }
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -30,3 +30,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+require('overlayscrollbars');
+require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
