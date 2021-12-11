@@ -1,7 +1,14 @@
 window._ = require('lodash');
+import $ from 'jquery';
 
 try {
+    window.$ = window.jQuery = $;
     require('bootstrap');
+    require('overlayscrollbars');
+    require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
+    require('datatables.net');
+    require('datatables.net-bs4');
+    window.datatables = require('datatables.net-bs4');
 } catch (e) { }
 
 /**
@@ -31,8 +38,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-import $ from 'jquery';
-window.$ = window.jQuery = $;
 
-require('overlayscrollbars');
-require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
+
