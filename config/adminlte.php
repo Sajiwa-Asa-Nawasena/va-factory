@@ -248,6 +248,27 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'manage_users',
+            'icon'    => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'users',
+                    'url'  => 'users',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'roles',
+                    'url'  => 'users/roles',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+                [
+                    'text' => 'permissions',
+                    'url'  => 'users/permissions',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+            ],
+        ],
         ['header' => 'cashflow'],
         [
             'text'        => 'cash_in',
