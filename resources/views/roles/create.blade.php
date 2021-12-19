@@ -50,8 +50,9 @@
                         <br />
                         @foreach ($permission as $value)
                             <div class="custom-control custom-checkbox">
-                                {{ Form::checkbox('permission[]', $value->id, false, ['class' => 'custom-control-input']) }}
-                                <label for="customCheckbox1" class="custom-control-label">{{ $value->name }}</label>
+                                {{ Form::checkbox('permission[]', $value->id, false, ['id' => 'role' . $value->id, 'class' => 'custom-control-input']) }}
+                                <label for={{ 'role' . $value->id }}
+                                    class="custom-control-label">{{ $value->name }}</label>
                             </div>
                             <br />
                         @endforeach
