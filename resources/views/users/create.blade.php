@@ -1,70 +1,99 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
+@section('title', __('user.manage_users'))
+
+@section('content_header')
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>@lang("user.manage_users")</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">@lang("user.users")</li>
+            </ol>
+        </div>
+    </div>
+@stop
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Create New User</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">@lang("user.card_title_create")</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        {!! Form::text('email', null, ['placeholder' => 'Enter email', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Confirm Password</label>
+                        {!! Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Role</label>
+                        {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{ route('home') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+                {!! Form::close() !!}
+            </div>
+            <!-- /.card -->
         </div>
     </div>
-</div>
+@stop
 
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-@if (count($errors) > 0)
-  <div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-    <ul>
-       @foreach ($errors->all() as $error)
-         <li>{{ $error }}</li>
-       @endforeach
-    </ul>
-  </div>
-@endif
-
-
-
-{!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Email:</strong>
-            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Password:</strong>
-            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Confirm Password:</strong>
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Role:</strong>
-            {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</div>
-{!! Form::close() !!}
-
-
-<p class="text-center text-primary"><small>VA Factory</small></p>
-@endsection
+@section('js')
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                columnDefs: [{
+                    className: 'text-center',
+                    targets: [0, 3, 4]
+                }, ],
+                language: {
+                    url: '/js/datatables/localisation/id.json'
+                }
+            });
+        });
+    </script>
+@stop

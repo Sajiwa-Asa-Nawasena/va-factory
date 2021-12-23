@@ -1,8 +1,15 @@
 window._ = require('lodash');
+import $ from 'jquery';
 
 try {
+    window.$ = window.jQuery = $;
     require('bootstrap');
-} catch (e) {}
+    require('overlayscrollbars');
+    require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
+    require('datatables.net');
+    require('datatables.net-bs4');
+    window.datatables = require('datatables.net-bs4');
+} catch (e) { }
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -30,3 +37,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+
+
