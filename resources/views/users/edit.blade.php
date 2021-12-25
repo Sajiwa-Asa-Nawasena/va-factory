@@ -18,67 +18,59 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
-            <div class="card">
+        <!-- left column -->
+        <div class="col-md-12">
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- general form elements -->
+            <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">@lang("user.card_title_list")</h3>
+                    <h3 class="card-title">@lang("user.card_title_create")</h3>
                 </div>
                 <!-- /.card-header -->
+                <!-- form start -->
+                {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>@lang("user.number")</th>
-                                <th>@lang("user.name")</th>
-                                <th>@lang("user.email")</th>
-                                <th>@lang("user.roles")</th>
-                                <th>@lang("user.actions")</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $key => $user)
-                                <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @if (!empty($user->getRoleNames()))
-                                            @foreach ($user->getRoleNames() as $v)
-                                                <label class="badge badge-success">{{ $v }}</label>
-                                            @endforeach
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-info" href="{{ route('users.show', $user->id) }}">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-primary" href="{{ route('users.edit', $user->id) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
-
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-
-                                        {!! Form::close() !!}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        {{-- <tfoot>
-                    <tr>
-                        <th>@lang("user.number")</th>
-                        <th>@lang("user.name")</th>
-                        <th>@lang("user.email")</th>
-                        <th>@lang("user.roles")</th>
-                        <th>@lang("user.actions")</th>
-                    </tr>
-                </tfoot> --}}
-                    </table>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        {!! Form::text('email', null, ['placeholder' => 'Enter email', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Confirm Password</label>
+                        {!! Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Role</label>
+                        {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
+                    </div>
                 </div>
                 <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{ route('home') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+                {!! Form::close() !!}
             </div>
+            <!-- /.card -->
         </div>
     </div>
 @stop
@@ -89,19 +81,5 @@
 
 @section('js')
     <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                columnDefs: [{
-                    className: 'text-center',
-                    targets: [0, 3, 4]
-                }, ],
-                language: {
-                    url: '/js/datatables/localisation/id.json'
-                }
-            });
-        });
     </script>
 @stop
