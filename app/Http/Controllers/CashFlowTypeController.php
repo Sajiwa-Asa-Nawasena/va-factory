@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class CashFlowTypeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:cash.flow.types.list|cash.flow.types.create|cash.flow.types.update|cash.flow.types.delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:cash.flow.types.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:cash.flow.types.update', ['only' => ['update']]);
+        $this->middleware('permission:cash.flow.types.delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class CashFlowTypeController extends Controller
      */
     public function index()
     {
-        //
+        $cashFlowTypes = CashFlowType::latest()->paginate(5);
+        return view('cash_flow_types.index', compact('cashFlowTypes'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +34,7 @@ class CashFlowTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('cash_flow_types.create');
     }
 
     /**
@@ -35,7 +45,14 @@ class CashFlowTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:cash_flow_types,name'
+        ]);
+
+        CashFlowType::create($request->all());
+
+        return redirect()->route('cash-flow-types.index')
+            ->with('success', 'Cash flow type created successfully.');
     }
 
     /**
@@ -46,7 +63,7 @@ class CashFlowTypeController extends Controller
      */
     public function show(CashFlowType $cashFlowType)
     {
-        //
+        return view('cash_flow_types.show', compact('cashFlowType'));
     }
 
     /**
@@ -57,7 +74,7 @@ class CashFlowTypeController extends Controller
      */
     public function edit(CashFlowType $cashFlowType)
     {
-        //
+        return view('cash_flow_types.edit', compact('cashFlowType'));
     }
 
     /**
@@ -69,7 +86,14 @@ class CashFlowTypeController extends Controller
      */
     public function update(Request $request, CashFlowType $cashFlowType)
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:cash_flow_types,name,' . $cashFlowType->id
+        ]);
+
+        $cashFlowType->update($request->all());
+
+        return redirect()->route('cash-flow-types.index')
+            ->with('success', 'Cash flow type updated successfully');
     }
 
     /**
@@ -80,6 +104,9 @@ class CashFlowTypeController extends Controller
      */
     public function destroy(CashFlowType $cashFlowType)
     {
-        //
+        $cashFlowType->delete();
+
+        return redirect()->route('cash-flow-types.index')
+            ->with('success', 'Cash flow type deleted successfully');
     }
 }
