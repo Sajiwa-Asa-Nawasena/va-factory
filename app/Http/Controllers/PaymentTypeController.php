@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PaymentTypeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:payment.types.list|payment.types.create|payment.types.edit|payment.types.delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:payment.types.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:payment.types.update', ['only' => ['update']]);
+        $this->middleware('permission:payment.types.delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class PaymentTypeController extends Controller
      */
     public function index()
     {
-        //
+        $paymentTypes = PaymentType::latest()->paginate(5);
+        return view('payment_types.index', compact('paymentTypes'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +33,7 @@ class PaymentTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('payment_types.create');
     }
 
     /**
@@ -35,7 +44,14 @@ class PaymentTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:payment_types,name'
+        ]);
+
+        PaymentType::create($request->all());
+
+        return redirect()->route('payment-types.index')
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -46,7 +62,7 @@ class PaymentTypeController extends Controller
      */
     public function show(PaymentType $paymentType)
     {
-        //
+        return view('payment_types.show', compact('paymentType'));
     }
 
     /**
@@ -57,7 +73,7 @@ class PaymentTypeController extends Controller
      */
     public function edit(PaymentType $paymentType)
     {
-        //
+        return view('payment_types.edit', compact('paymentType'));
     }
 
     /**
@@ -69,7 +85,14 @@ class PaymentTypeController extends Controller
      */
     public function update(Request $request, PaymentType $paymentType)
     {
-        //
+        request()->validate([
+            'name' => 'required|unique:payment_types,name,' . $paymentType->id
+        ]);
+
+        $paymentType->update($request->all());
+
+        return redirect()->route('payment-types.index')
+            ->with('success', 'Payment type updated successfully');
     }
 
     /**
@@ -80,6 +103,9 @@ class PaymentTypeController extends Controller
      */
     public function destroy(PaymentType $paymentType)
     {
-        //
+        $paymentType->delete();
+
+        return redirect()->route('payment-types.index')
+            ->with('success', 'Payment type deleted successfully');
     }
 }
