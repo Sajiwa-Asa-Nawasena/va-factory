@@ -9,4 +9,5 @@ return [
     'roles' => 'Tipe Pengguna',
     'actions' => 'Perintah',
     'card_title_list' => 'Daftar Semua Pengguna',
+    'card_title_create' => 'Buat Pengguna Baru',
 ];

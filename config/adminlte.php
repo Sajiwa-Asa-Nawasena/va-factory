@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => 'VA Factory',
+    'logo_img' => 'images/web/logo.png',
+    'logo_img_class' => 'brand-image', // brand-image img-circle elevation-3
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'VA Factory',
 
     /*
     |--------------------------------------------------------------------------
@@ -127,9 +127,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar' => 'sidebar-dark-red elevation-4',
+    'classes_sidebar_nav' => 'nav-compact',
+    'classes_topnav' => 'navbar-red navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -244,6 +244,27 @@ return [
                 [
                     'text' => 'change_password',
                     'url'  => 'admin/settings',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'manage_users',
+            'icon'    => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'users',
+                    'url'  => 'users',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'roles',
+                    'url'  => 'users/roles',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+                [
+                    'text' => 'permissions',
+                    'url'  => 'users/permissions',
                     'icon' => 'fas fa-fw fa-lock',
                 ],
             ],
