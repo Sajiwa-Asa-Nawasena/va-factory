@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BahanController;
 use App\Http\Controllers\CashFlowTypeController;
+use App\Http\Controllers\CustomeJerseyController;
+use App\Http\Controllers\JenisController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\PermissionController;
@@ -35,8 +38,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('data-bahan', BahanController::class);
+    Route::resource('data-jenis', JenisController::class);
+
 });
 
 Route::resource('konfirmasi-pembayaran', KonfirmasiPembayaranController::class);
+Route::resource('custome-jersey', CustomeJerseyController::class);
 
-// Route::get('/konfirmasi-pembayaran', [App\Http\Controllers\KonfirmasiPembayaranController::class, 'index'])->name('konfirmasi-pembayaran');
+
