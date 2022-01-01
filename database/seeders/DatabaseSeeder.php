@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            PermissionTableSeeder::class,
-            CreateAdminUserSeeder::class,
-            ManagePermissionsSeeder::class,
+            // PermissionTableSeeder::class,
+            // CreateAdminUserSeeder::class,
+            // ManagePermissionsSeeder::class,
             CashFlowTypesPermissionsSeeder::class,
             PaymentTypesPermissionsSeeder::class,
             PaymentTypesSeeder::class,
