@@ -37,14 +37,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <span class="form-label">User Id</span>
-                                        <input class="form-control" name="user_id" required type="text"
-                                            placeholder="Masukan User Id">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <span class="form-label">Email</span>
                                         <input class="form-control" name="email" required type="text"

@@ -9,6 +9,6 @@ class PaymentConfirmation extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'email','jumlah_bayar','no_rekening_pengirim','tgl_bayar','bukti_pembayaran'
+        'email','jumlah_bayar','no_rekening_pengirim','tgl_bayar','bukti_pembayaran'
     ];
 }

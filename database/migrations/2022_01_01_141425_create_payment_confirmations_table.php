@@ -15,7 +15,6 @@ class CreatePaymentConfirmationsTable extends Migration
     {
         Schema::create('payment_confirmations', function (Blueprint $table) {
             $table->id();
-            $table->integer('users_id');
             $table->string('tgl_bayar');
             $table->string('email');
             $table->string('no_rekening_pengirim');

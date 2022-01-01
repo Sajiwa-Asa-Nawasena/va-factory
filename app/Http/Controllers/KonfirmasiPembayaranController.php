@@ -27,7 +27,7 @@ class KonfirmasiPembayaranController extends Controller
     {
         $cek = PaymentConfirmation::create($request->all());
         if($cek){
-            return redirect('https://vafactorystore.com/');
+            return redirect('https://vafactorystore.com/index.php/pembayaran-berhasil/');
         }else{
             return redirect()->route('konfirmasi-pembayaran.index')
             ->with('error', 'Terjadi Kesalahan Saat Mengirim Data. Silahkan Coba Lagi !!!');
