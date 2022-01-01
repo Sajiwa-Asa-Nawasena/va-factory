@@ -16,8 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            CashFlowType::class,
-            CashFlowType::class
+            PermissionTableSeeder::class,
+            CreateAdminUserSeeder::class,
+            ManagePermissionsSeeder::class,
+            CashFlowTypesPermissionsSeeder::class,
+            PaymentTypesPermissionsSeeder::class,
+            PaymentTypesSeeder::class,
+            CashFlowTypesSeeder::class,
+            SyncSuperRolePermissionsSeeder::class
         ]);
     }
 }
