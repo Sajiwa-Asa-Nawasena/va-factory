@@ -23,6 +23,7 @@ class CreateCustomeJerseys extends Migration
             $table->integer('qty');
             $table->integer('satuan');
             $table->integer('total');
+            $table->string('desain');
             $table->timestamps();
         });
     }
