@@ -13,7 +13,7 @@ class CreateCustomeJerseys extends Migration
      */
     public function up()
     {
-        Schema::create('custome_jerseys', function (Blueprint $table) {
+        Schema::create('data_custome_jerseys', function (Blueprint $table) {
             $table->id();
             $table->string('kode_jenis');
             $table->string('kode_bahan');
@@ -35,6 +35,6 @@ class CreateCustomeJerseys extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('custome_jerseys');
+        Schema::dropIfExists('data_custome_jerseys');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataBahan;
+use App\Models\DataCustomeJersey;
 use App\Models\DataJenis;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,15 @@ class CustomeJerseyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cek = DataCustomeJersey::create($request->all());
+
+        if($cek){
+            return redirect()->route('custome-jersey.index')
+            ->with('success', 'Data Bahan Berhasil Disimpan.');
+        }else{
+            return redirect()->route('custome-jersey.index')
+            ->with('denger', 'Data Bahan Gagal Disimpan.');
+        }
     }
 
     /**

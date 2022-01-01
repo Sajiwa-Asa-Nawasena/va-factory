@@ -9,6 +9,6 @@ class DataCustomeJersey extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'kode_bahan','kode_jenis','email','no_wa','nama','satuan','total','qty'
+        'kode_bahan','kode_jenis','email','no_wa','nama','satuan','total','qty','desain'
     ];
 }
