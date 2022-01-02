@@ -1,5 +1,6 @@
 window._ = require('lodash');
 import $ from 'jquery';
+import 'jquery-ui/ui/widgets/datepicker';
 
 try {
     window.$ = window.jQuery = $;

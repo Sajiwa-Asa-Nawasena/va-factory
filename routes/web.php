@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CashFlowController;
 use App\Http\Controllers\CashFlowTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentTypeController;
@@ -30,6 +31,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('permissions', PermissionController::class);
     Route::resource('cash-flow-types', CashFlowTypeController::class);
+    Route::resource('cash-flows', CashFlowController::class);
     Route::resource('payment-types', PaymentTypeController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
