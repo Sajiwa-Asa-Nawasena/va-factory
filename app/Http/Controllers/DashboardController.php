@@ -19,4 +19,9 @@ class DashboardController extends Controller
 
         return view('dashboard.index', compact('totalMoneyInDebit', 'totalMoneyInCash', 'totalCashIn', 'totalCashOut'));
     }
+
+    public function settings()
+    {
+        return view('dashboard.settings');
+    }
 }

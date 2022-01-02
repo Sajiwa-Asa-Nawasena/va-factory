@@ -235,7 +235,7 @@ return [
         // ['header' => 'HALAMAN UTAMA'],
         [
             'text'        => 'Dashboard',
-            'url'         => '/',
+            'url'         => '/dashboard',
             'icon'        => 'fas fa-fw fa-chart-pie',
             // 'label'       => 4,
             // 'label_color' => 'success',
@@ -293,7 +293,14 @@ return [
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
-        // ['header' => 'app_settings'],
+        ['header' => 'PENGATURAN'],
+        [
+            'text'        => 'Pengaturan',
+            'url'         => '/settings',
+            'icon'        => 'fas fa-fw fa-cogs',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
     ],
 
     /*

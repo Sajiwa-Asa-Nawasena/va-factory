@@ -40,4 +40,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('products', ProductController::class);
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
 });
