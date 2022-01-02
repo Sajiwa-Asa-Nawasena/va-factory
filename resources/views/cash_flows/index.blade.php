@@ -10,7 +10,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">@lang("cash_flows.cash_flow_types")</li>
+                <li class="breadcrumb-item active">@lang("cash_flows.cash_flows")</li>
             </ol>
         </div>
     </div>
@@ -25,11 +25,12 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="cash_flows" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>@lang("cash_flows.number")</th>
                                 <th>@lang("cash_flows.date")</th>
+                                <th>@lang("cash_flows.user")</th>
                                 <th>@lang("cash_flows.cash_flow_type")</th>
                                 <th>@lang("cash_flows.payment_type")</th>
                                 <th>@lang("cash_flows.amount")</th>
@@ -42,21 +43,28 @@
                                 <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user->date }}</td>
-                                    <td>{{ $user->cash_flow_type }}</td>
+                                    <td>{{ $user->user }}</td>
+                                    <td>
+                                        @if ($user->cash_flow_type == 'KAS MASUK')
+                                            <label class="badge badge-success">{{ $user->cash_flow_type }}</label>
+                                        @elseif ($user->cash_flow_type == 'KAS KELUAR')
+                                            <label class="badge badge-warning">{{ $user->cash_flow_type }}</label>
+                                        @endif
+                                    </td>
                                     <td>{{ $user->payment_type }}</td>
-                                    <td>{{ $user->amount }}</td>
+                                    <td>@money($user->amount)</td>
                                     <td>{{ $user->description }}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-info" href="{{ route('cash-flows.index', $user->id) }}">
+                                        {{-- <a class="btn btn-sm btn-info" href="{{ route('cash-flows.index', $user->id) }}">
                                             <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-primary"
+                                        </a> --}}
+                                        <a class="btn btn-sm btn-primary" title="Edit"
                                             href="{{ route('cash-flows.edit', $user->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['cash-flows.destroy', $user->id], 'style' => 'display:inline']) !!}
 
-                                        <button type="submit" class="btn btn-sm btn-danger">
+                                        <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
                                             <i class="fas fa-trash"></i>
                                         </button>
 
@@ -80,27 +88,18 @@
 @section('js')
     <script>
         $(function() {
-            // $("#example1").DataTable({
-            //     "responsive": true,
-            //     "lengthChange": false,
-            //     "autoWidth": false,
-            //     columnDefs: [{
-            //             className: 'text-center',
-            //             targets: [0, 2]
-            //         },
-            //         {
-            //             "width": "5%",
-            //             "targets": 0
-            //         },
-            //         {
-            //             "width": "15%",
-            //             "targets": 2
-            //         },
-            //     ],
-            //     language: {
-            //         url: '/js/datatables/localisation/id.json'
-            //     }
-            // });
+            $("#cash_flows").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                columnDefs: [{
+                    className: 'text-center',
+                    targets: [0, 1, 2, 3, 4]
+                }],
+                language: {
+                    url: '/js/datatables/localisation/id.json'
+                }
+            });
         });
     </script>
 @stop

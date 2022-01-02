@@ -10,7 +10,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">@lang("cash_flows.cash_flow_types")</li>
+                <li class="breadcrumb-item active">@lang("cash_flows.cash_flows")</li>
             </ol>
         </div>
     </div>
@@ -69,8 +69,8 @@
                         {!! Form::text('amount', null, ['placeholder' => '', 'class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
-                        <label for="description">Deskripsi</label>
-                        {!! Form::textarea('description', null, ['placeholder' => 'Description', 'class' => 'form-control']) !!}
+                        <label for="description">Keterangan</label>
+                        {!! Form::textarea('description', null, ['placeholder' => 'contoh: untuk keperluan pembelian material', 'class' => 'form-control']) !!}
                     </div>
                 </div>
                 <!-- /.card-body -->

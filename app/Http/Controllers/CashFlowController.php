@@ -28,7 +28,8 @@ class CashFlowController extends Controller
         $cashFlows = DB::table('cash_flows')
         ->join('cash_flow_types', 'cash_flows.cash_flow_types_id', '=', 'cash_flow_types.id')
         ->join('payment_types', 'cash_flows.cash_flow_types_id', '=', 'payment_types.id')
-        ->select('cash_flows.id', 'cash_flows.date', 'cash_flow_types.name as cash_flow_type', 'payment_types.name as payment_type', 'cash_flows.amount', 'cash_flows.description')
+        ->join('users', 'cash_flows.users_id', '=', 'users.id')
+        ->select('cash_flows.id', 'cash_flows.date', 'cash_flow_types.name as cash_flow_type', 'payment_types.name as payment_type', 'cash_flows.amount', 'cash_flows.description', 'users.name as user')
         ->orderBy('cash_flows.date', 'DESC')->paginate(10);
 
         return view('cash_flows.index', compact('cashFlows'))
@@ -58,7 +59,7 @@ class CashFlowController extends Controller
     {
         request()->validate([
             'cash_flow_types_id' => 'required|numeric',
-            'payment_types_id' => 'required|numeric',
+            'payment_types_id' => 'numeric',
             'date' => 'required|date',
             'amount' => 'required|numeric',
             'description' => 'required|string'
@@ -106,7 +107,7 @@ class CashFlowController extends Controller
     {
         request()->validate([
             'cash_flow_types_id' => 'required|numeric',
-            'payment_types_id' => 'required|numeric',
+            'payment_types_id' => 'numeric',
             'date' => 'required|date',
             'amount' => 'required|numeric',
             'description' => 'required|string'

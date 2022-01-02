@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\CashFlowController;
 use App\Http\Controllers\CashFlowTypeController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Models\CashFlow;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +38,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

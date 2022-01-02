@@ -232,7 +232,15 @@ return [
         ],
 
         // Sidebar items:
+        // ['header' => 'HALAMAN UTAMA'],
         [
+            'text'        => 'Dashboard',
+            'url'         => '/',
+            'icon'        => 'fas fa-fw fa-chart-pie',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        /* [
             'text'    => 'account_settings',
             'icon'    => 'fas fa-fw fa-user',
             'submenu' => [
@@ -247,44 +255,45 @@ return [
                     'icon' => 'fas fa-fw fa-lock',
                 ],
             ],
-        ],
+        ], */
+        ['header' => 'MANAJEMEN USER'],
         [
-            'text'    => 'manage_users',
+            'text'    => 'Kelola User',
             'icon'    => 'fas fa-fw fa-user',
             'submenu' => [
                 [
-                    'text' => 'users',
+                    'text' => 'Semua User',
                     'url'  => 'users',
                     'icon' => 'fas fa-fw fa-user',
                 ],
                 [
-                    'text' => 'roles',
-                    'url'  => 'users/roles',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'text' => 'Tipe User',
+                    'url'  => 'roles',
+                    'icon' => 'fas fa-fw fa-users',
                 ],
                 [
-                    'text' => 'permissions',
-                    'url'  => 'users/permissions',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'text' => 'Hak Akses',
+                    'url'  => 'permissions',
+                    'icon' => 'fas fa-fw fa-key',
                 ],
             ],
         ],
         ['header' => 'cashflow'],
         [
-            'text'        => 'cash_in',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
+            'text'        => 'Input Kas',
+            'url'         => 'cash-flows/create',
+            'icon'        => 'far fa-fw fa-edit',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
         [
-            'text'        => 'cash_out',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
+            'text'        => 'Histori Kas',
+            'url'         => 'cash-flows',
+            'icon'        => 'fas fa-fw fa-book',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
-        ['header' => 'app_settings'],
+        // ['header' => 'app_settings'],
     ],
 
     /*

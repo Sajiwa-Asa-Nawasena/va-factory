@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', __('user.manage_users'))
+@section('title', __('role.manage_roles'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>@lang("user.manage_users")</h1>
+            <h1>@lang("role.manage_roles")</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
