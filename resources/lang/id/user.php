@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'users' => 'Pengguna',
-    'manage_users' => 'Kelola Data Pengguna',
+    'users' => 'User',
+    'manage_users' => 'Daftar Semua User',
     'number' => 'No.',
     'name' => 'Nama',
     'email' => 'Email',
-    'roles' => 'Tipe Pengguna',
+    'roles' => 'Tipe User',
     'actions' => 'Perintah',
-    'card_title_list' => 'Daftar Semua Pengguna',
-    'card_title_create' => 'Buat Pengguna Baru',
+    'card_title_list' => 'Daftar Semua User',
+    'card_title_create' => 'Buat User Baru',
 ];

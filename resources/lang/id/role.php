@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'roles' => 'Grup Pengguna',
-    'manage_roles' => 'Kelola Grup Pengguna',
+    'roles' => 'Tipe User',
+    'manage_roles' => 'Kelola Tipe User',
     'number' => 'No.',
     'name' => 'Nama',
     'actions' => 'Perintah',
-    'card_title_list' => 'Daftar Semua Grup Pengguna',
-    'card_title_create' => 'Buat Grup Pengguna Baru',
+    'card_title_list' => 'Daftar Semua Tipe User',
+    'card_title_create' => 'Buat Tipe User Baru',
 ];

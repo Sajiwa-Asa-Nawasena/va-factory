@@ -4,6 +4,8 @@ use App\Http\Controllers\BahanController;
 use App\Http\Controllers\CashFlowTypeController;
 use App\Http\Controllers\CustomeJerseyController;
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\CashFlowController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\PermissionController;
@@ -34,13 +36,15 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('permissions', PermissionController::class);
     Route::resource('cash-flow-types', CashFlowTypeController::class);
+    Route::resource('cash-flows', CashFlowController::class);
     Route::resource('payment-types', PaymentTypeController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('data-bahan', BahanController::class);
     Route::resource('data-jenis', JenisController::class);
-
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
 });
 
 Route::resource('konfirmasi-pembayaran', KonfirmasiPembayaranController::class);
