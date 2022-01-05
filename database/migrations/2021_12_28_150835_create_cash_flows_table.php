@@ -18,7 +18,7 @@ class CreateCashFlowsTable extends Migration
             $table->integer('users_id');
             $table->integer('payment_types_id');
             $table->integer('cash_flow_types_id');
-            $table->dateTime('datetime');
+            $table->date('date');
             $table->integer('amount');
             $table->text('description');
             $table->timestamps();

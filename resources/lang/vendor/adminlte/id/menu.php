@@ -26,6 +26,6 @@ return [
     'app_settings'                  => 'PENGATURAN APLIKASI',
     'transactions'                  => 'TRANSAKSI',
     'permissions'                   => 'Hak Akses',
-    'users'                         => 'Pengguna',
-    'roles'                         => 'Tipe Pengguna',
+    'users'                         => 'User',
+    'roles'                         => 'Tipe User',
 ];

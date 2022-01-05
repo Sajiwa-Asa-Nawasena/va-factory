@@ -27,9 +27,9 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        $permissions = Permission::orderBy('name', 'ASC')->paginate(5);
-        return view('permissions.index', compact('permissions'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $permissions = Permission::orderBy('name', 'ASC')->get();
+        // return view('permissions.index', compact('permissions'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('permissions.index', compact('permissions'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
